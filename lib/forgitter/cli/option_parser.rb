@@ -11,7 +11,7 @@ module Forgitter
         # The options specified on the command line will be collected in *options*.
         # We set default values here.
         @options = ::OpenStruct.new
-        options.text_editors = [Forgitter::DEFAULT_EDITORS]
+        options.text_editors = Forgitter::DEFAULT_EDITORS
         options.stdout = false
 
         @opt_parser = ::OptionParser.new do |opts|
