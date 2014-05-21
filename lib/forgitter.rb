@@ -2,12 +2,21 @@ require 'forgitter/version'
 
 module Forgitter
   class Generator
-    def generate(types)
+    def self.generate(types)
       types.each do |type|
-        puts "Fetching #{type} .gitignore..."
+        print "Fetching #{type} .gitignore..."
+        STDOUT.flush
+
+        # do stuff
+
+        puts "done!"
       end
+
       print "Generating combined .gitignore..."
       STDOUT.flush
+
+      # do stuff
+
       puts "done!"
     end
   end
