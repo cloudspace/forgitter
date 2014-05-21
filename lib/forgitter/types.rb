@@ -1,7 +1,4 @@
 module Forgitter
-  DEFAULT_TYPES = []
-  #DEFAULT_TYPES = ['rails', 'eclipse', 'emacs', 'osx', 'linux', 'xcode', 'vim', 'textmate', 'sublimetext']
-
   TYPES = {
     'archives' => 'Global/Archives.gitignore',
     'bricxcc' => 'Global/BricxCC.gitignore',

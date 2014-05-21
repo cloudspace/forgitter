@@ -2,7 +2,7 @@ require 'forgitter/types'
 
 module Forgitter
   DEFAULT_OPTIONS = {
-    :types => Forgitter::DEFAULT_TYPES,
+    :types => [],
     :stdout => false,
     :access_token => ''
   }
