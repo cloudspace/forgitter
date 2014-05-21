@@ -10,9 +10,7 @@ module Forgitter
       def initialize
         # The options specified on the command line will be collected in *options*.
         # We set default values here.
-        @options = ::OpenStruct.new
-        options.text_editors = Forgitter::DEFAULT_EDITORS
-        options.stdout = false
+        @options = Forgitter::DEFAULT_OPTIONS
 
         @opt_parser = ::OptionParser.new do |opts|
           opts.banner = 'Usage: forgitter TYPE1 [TYPE2 ...]'
@@ -21,8 +19,13 @@ module Forgitter
           opts.separator 'Specific options:'
 
           opts.on('-c', '--stdout',
-                  'Write the combined .gitignore to the standard output stream and not to disk.') do |log_file|
-            options.stdout = true
+                  'Write the combined .gitignore to the standard output stream and not to disk.') do
+            options[:stdout] = true
+          end
+
+          opts.on('-t', '--token TOKEN',
+                  'Provide a GitHub access token for a higher rate limit (see https://developer.github.com/v3/#rate-limiting).') do |token|
+            options[:access_token] = token
           end
 
           opts.separator ''
