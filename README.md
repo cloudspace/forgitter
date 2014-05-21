@@ -1,6 +1,6 @@
 # Forgitter
 
-TODO: Write a gem description
+.gitignore generator
 
 ## Installation
 
