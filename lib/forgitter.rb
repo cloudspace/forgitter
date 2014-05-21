@@ -1,5 +1,7 @@
 require 'forgitter/version'
 
+require 'forgitter/runner'
+
 module Forgitter
   class Generator
     def self.generate(types)
