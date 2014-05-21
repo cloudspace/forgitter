@@ -2,9 +2,10 @@ require 'octokit'
 
 module Forgitter
   class Runner
-    def initialize(types = Forgitter::DEFAULT_TYPES, text_editors = Forgitter::DEFAULT_EDITORS)
+    def initialize(types = Forgitter::DEFAULT_TYPES, editors = Forgitter::DEFAULT_EDITORS, stdout = false)
       @types = inflectionize_types(types)
-      @editors = inflectionize_editors(text_editors)
+      @editors = inflectionize_editors(editors)
+      @stdout = stdout
     end
 
     def run
@@ -15,8 +16,13 @@ module Forgitter
       @editors.each do |editor|
         output += get_ignore_file(editor)
       end
-      File.open('.gitignore', 'w') do |file|
-        file.write(output)
+
+      if @stdout
+        puts output
+      else
+        File.open('.gitignore', 'w') do |file|
+          file.write(output)
+        end
       end
     end
 

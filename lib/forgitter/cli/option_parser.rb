@@ -12,17 +12,18 @@ module Forgitter
         # We set default values here.
         @options = ::OpenStruct.new
         options.text_editors = [Forgitter::DEFAULT_EDITORS]
+        options.stdout = false
 
         @opt_parser = ::OptionParser.new do |opts|
           opts.banner = 'Usage: forgitter TYPE1 [TYPE2 ...]'
 
-          #opts.separator ''
-          #opts.separator 'Specific options:'
+          opts.separator ''
+          opts.separator 'Specific options:'
 
-          #opts.on('-l', '--logfile LOGFILE',
-          #        'Specify the LOGFILE to log output to') do |log_file|
-          #  options.log_file = log_file
-          #end
+          opts.on('-c', '--stdout',
+                  'Write the combined .gitignore to the standard output stream and not to disk.') do |log_file|
+            options.stdout = true
+          end
 
           opts.separator ''
           opts.separator 'Common options:'

@@ -14,5 +14,5 @@ if types.empty?
   #exit(1)
 end
 
-runner = Forgitter::Runner.new(types, options.text_editors)
+runner = Forgitter::Runner.new(types, options.text_editors, options.stdout)
 runner.run
