@@ -1,6 +1,6 @@
 require 'forgitter/editors'
-require 'forgitter/types'
 require 'forgitter/options'
+require 'forgitter/types'
 require 'forgitter/runner'
 require 'forgitter/version'
 

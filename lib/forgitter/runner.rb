@@ -1,3 +1,4 @@
+require 'forgitter'
 require 'octokit'
 
 module Forgitter
