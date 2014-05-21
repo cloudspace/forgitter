@@ -25,14 +25,10 @@ To generate a .gitignore in the current directory, run:
     forgitter TYPE1 [TYPE2 ...]
 
 Where TYPE1, TYPE2, etc. are the keys found in the
-[types](https://github.com/cloudspace/forgitter/blob/master/lib/forgitter/types.rb#L3)
+[types](https://github.com/cloudspace/forgitter/blob/master/lib/forgitter/types.rb)
 hash.
 
 See `forgitter -h` for more options.
-
-### Examples
-
-    Create a .gitignore 
 
 ## Contributing
 
