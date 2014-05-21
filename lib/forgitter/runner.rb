@@ -13,13 +13,12 @@ module Forgitter
 
     def run
       output = ""
-      @types.each do |type|
-        output += "# Information from #{type}\n"
-        output += get_ignore_file(type)
-      end
-      @editors.each do |editor|
-        output += "# Information from #{editor}\n"
-        output += get_ignore_file(editor)
+      (@types | @editors).each do |type|
+        ignore_file = get_ignore_file(type)
+        if ignore_file
+          output += "# Information from #{type}\n"
+          output += ignore_file
+        end
       end
 
       if @stdout
@@ -35,9 +34,13 @@ module Forgitter
 
     # Given a filename on the gitignore repo, return a string with the contents of the file
     def get_ignore_file(filename)
-      puts "Getting #{filename}"
-      api_response = @client.contents('github/gitignore', :ref => 'master', :path => filename)
-      Base64.decode64( api_response.content )
+      puts "Fetching #{filename}"
+      begin
+        api_response = @client.contents('github/gitignore', :ref => 'master', :path => filename)
+        Base64.decode64( api_response.content )
+      rescue Octokit::TooManyRequests
+        puts "You are being rate limited! Failed to fetch #{filename}."
+      end
     end
 
     # converts "rails" or "Rails" into "Rails.gitignore"
