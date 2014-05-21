@@ -1,6 +1,6 @@
 require 'forgitter/cli/option_parser'
 
-module Dockerchain
+module Forgitter
   module CLI
   end
 end
