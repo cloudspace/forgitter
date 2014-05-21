@@ -5,7 +5,6 @@ module Forgitter
   class Runner
     def initialize(options = Forgitter::DEFAULT_OPTIONS)
       @types = convert_to_filenames(options[:types])
-      @editors = convert_to_filenames(options[:editors])
       @stdout = options[:stdout]
 
       @client = Octokit
@@ -14,7 +13,7 @@ module Forgitter
 
     def run
       output = ""
-      (@types | @editors).each do |type|
+      @types.each do |type|
         ignore_file = get_ignore_file(type)
         if ignore_file
           output += "# Information from #{type}\n"
@@ -52,7 +51,7 @@ module Forgitter
     end
 
     def conversion_table
-      @conversion_table ||= Forgitter::TYPES.merge(Forgitter::EDITORS)
+      Forgitter::TYPES
     end
   end
 end

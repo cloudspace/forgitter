@@ -1,4 +1,3 @@
-require 'forgitter/editors'
 require 'forgitter/options'
 require 'forgitter/types'
 require 'forgitter/runner'

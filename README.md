@@ -1,6 +1,8 @@
 # Forgitter
 
-.gitignore generator
+Forgitter is a .gitignore generator. It uses the *.gitignore files found at
+https://github.com/github/gitignore to generate a combined .gitignore file
+locally.
 
 ## Installation
 
@@ -18,9 +20,19 @@ Or install it yourself as:
 
 ## Usage
 
-    forgitter TYPE1 [TYPE2 [TYPE3] ...]
+To generate a .gitignore in the current directory, run:
+
+    forgitter TYPE1 [TYPE2 ...]
+
+Where TYPE1, TYPE2, etc. are the keys found in the
+[types](https://github.com/cloudspace/forgitter/blob/master/lib/forgitter/types.rb#L3)
+hash.
 
 See `forgitter -h` for more options.
+
+### Examples
+
+    Create a .gitignore 
 
 ## Contributing
 
