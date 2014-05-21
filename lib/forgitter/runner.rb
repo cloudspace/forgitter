@@ -2,10 +2,7 @@ require 'octokit'
 
 module Forgitter
   class Runner
-    DEFAULT_TYPES = ['Rails']
-    DEFAULT_EDITORS = ['Eclipse', 'Emacs', 'OSX', 'Linux', 'Xcode', 'vim', 'TextMate', 'SublimeText']
-
-    def initialize(types = DEFAULT_TYPES, text_editors = DEFAULT_EDITORS)
+    def initialize(types = Forgitter::DEFAULT_TYPES, text_editors = Forgitter::DEFAULT_EDITORS)
       @types = inflectionize_types(types)
       @editors = inflectionize_editors(text_editors)
     end

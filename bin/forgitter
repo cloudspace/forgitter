@@ -9,8 +9,10 @@ options = option_parser.parse(ARGV)
 types = []
 types << ARGV.pop until ARGV.empty?
 if types.empty?
-  puts option_parser.help
-  exit(1)
+  types = Forgitter::DEFAULT_TYPES
+  #puts option_parser.help
+  #exit(1)
 end
 
-Forgitter::Generator.generate(types)
+runner = Forgitter::Runner.new(types, options.text_editors)
+runner.run
