@@ -18,7 +18,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    forgitter TYPE1 [TYPE2 [TYPE3] ...]
+
+See `forgitter -h` for more options.
 
 ## Contributing
 
