@@ -36,8 +36,6 @@ module Forgitter
         lines << [type[:name], type[:path]]
       end
 
-      puts 'Available types:'
-      puts
       lines.sort_by { |line| line[0] }.each do |line|
         printf("%-#{col1size}s\t%s\n", line[0], line[1])
       end
