@@ -1,166 +1,46 @@
 module Forgitter
-  TYPES = {
-    'archives' => 'Global/Archives.gitignore',
-    'bricxcc' => 'Global/BricxCC.gitignore',
-    'cvs' => 'Global/CVS.gitignore',
-    'cloud' => 'Global/Cloud9.gitignore',
-    'darteditor' => 'Global/DartEditor.gitignore',
-    'dreamweaver' => 'Global/Dreamweaver.gitignore',
-    'eclipse' => 'Global/Eclipse.gitignore',
-    'eiffelstudio' => 'Global/EiffelStudio.gitignore',
-    'emacs' => 'Global/Emacs.gitignore',
-    'ensime' => 'Global/Ensime.gitignore',
-    'espresso' => 'Global/Espresso.gitignore',
-    'flexbuilder' => 'Global/FlexBuilder.gitignore',
-    'ipythonnotebook' => 'Global/IPythonNotebook.gitignore',
-    'jetbrains' => 'Global/JetBrains.gitignore',
-    'kdevelop' => 'Global/KDevelop4.gitignore',
-    'kate' => 'Global/Kate.gitignore',
-    'lazarus' => 'Global/Lazarus.gitignore',
-    'linux' => 'Global/Linux.gitignore',
-    'matlab' => 'Global/Matlab.gitignore',
-    'mercurial' => 'Global/Mercurial.gitignore',
-    'modelsim' => 'Global/ModelSim.gitignore',
-    'monodevelop' => 'Global/MonoDevelop.gitignore',
-    'netbeans' => 'Global/NetBeans.gitignore',
-    'notepad' => 'Global/NotepadPP.gitignore',
-    'notepadpp' => 'Global/NotepadPP.gitignore',
-    'osx' => 'Global/OSX.gitignore',
-    'quartus' => 'Global/Quartus2.gitignore',
-    'redcar' => 'Global/Redcar.gitignore',
-    'sbt' => 'Global/SBT.gitignore',
-    'svn' => 'Global/SVN.gitignore',
-    'slickedit' => 'Global/SlickEdit.gitignore',
-    'sublimetext' => 'Global/SublimeText.gitignore',
-    'tags' => 'Global/Tags.gitignore',
-    'textmate' => 'Global/TextMate.gitignore',
-    'vagrant' => 'Global/Vagrant.gitignore',
-    'virtualenv' => 'Global/VirtualEnv.gitignore',
-    'windows' => 'Global/Windows.gitignore',
-    'xcode' => 'Global/Xcode.gitignore',
-    'xilinxise' => 'Global/XilinxISE.gitignore',
-    'vim' => 'Global/vim.gitignore',
-    'webmethods' => 'Global/webMethods.gitignore',
+  def self.parameterize(name)
+    name.gsub(/[^a-z0-9+]+/i, '').downcase
+  end
 
-    'actionscript' => 'Actionscript.gitignore',
-    'ada' => 'Ada.gitignore',
-    'agda' => 'Agda.gitignore',
-    'android' => 'Android.gitignore',
-    'appceleratortitanium' => 'AppceleratorTitanium.gitignore',
-    'archlinuxpackages' => 'ArchLinuxPackages.gitignore',
-    'autotools' => 'Autotools.gitignore',
-    'bancha' => 'Bancha.gitignore',
-    'c++' => 'C++.gitignore',
-    'c' => 'C.gitignore',
-    'cfwheels' => 'CFWheels.gitignore',
-    'cmake' => 'CMake.gitignore',
-    'cakephp' => 'CakePHP.gitignore',
-    'chefcookbook' => 'ChefCookbook.gitignore',
-    'clojure' => 'Clojure.gitignore',
-    'codeigniter' => 'CodeIgniter.gitignore',
-    'commonlisp' => 'CommonLisp.gitignore',
-    'composer' => 'Composer.gitignore',
-    'concrete' => 'Concrete5.gitignore',
-    'coq' => 'Coq.gitignore',
-    'dm' => 'DM.gitignore',
-    'dart' => 'Dart.gitignore',
-    'delphi' => 'Delphi.gitignore',
-    'drupal' => 'Drupal.gitignore',
-    'episerver' => 'EPiServer.gitignore',
-    'eagle' => 'Eagle.gitignore',
-    'elisp' => 'Elisp.gitignore',
-    'elixir' => 'Elixir.gitignore',
-    'erlang' => 'Erlang.gitignore',
-    'expressionengine' => 'ExpressionEngine.gitignore',
-    'fancy' => 'Fancy.gitignore',
-    'finale' => 'Finale.gitignore',
-    'forcedotcom' => 'ForceDotCom.gitignore',
-    'fuelphp' => 'FuelPHP.gitignore',
-    'gwt' => 'GWT.gitignore',
-    'go' => 'Go.gitignore',
-    'gradle' => 'Gradle.gitignore',
-    'grails' => 'Grails.gitignore',
-    'haskell' => 'Haskell.gitignore',
-    'idris' => 'Idris.gitignore',
-    'java' => 'Java.gitignore',
-    'jboss' => 'Jboss.gitignore',
-    'jekyll' => 'Jekyll.gitignore',
-    'joomla' => 'Joomla.gitignore',
-    'jython' => 'Jython.gitignore',
-    'kohana' => 'Kohana.gitignore',
-    'laravel' => 'Laravel4.gitignore',
-    'leiningen' => 'Leiningen.gitignore',
-    'lemonstand' => 'LemonStand.gitignore',
-    'lilypond' => 'Lilypond.gitignore',
-    'lithium' => 'Lithium.gitignore',
-    'magento' => 'Magento.gitignore',
-    'maven' => 'Maven.gitignore',
-    'mercury' => 'Mercury.gitignore',
-    'meteor' => 'Meteor.gitignore',
-    'node' => 'Node.gitignore',
-    'ocaml' => 'OCaml.gitignore',
-    'objcetivec' => 'Objective-C.gitignore',
-    'opa' => 'Opa.gitignore',
-    'opencart' => 'OpenCart.gitignore',
-    'oracleforms' => 'OracleForms.gitignore',
-    'packer' => 'Packer.gitignore',
-    'perl' => 'Perl.gitignore',
-    'phalcon' => 'Phalcon.gitignore',
-    'playframework' => 'PlayFramework.gitignore',
-    'plone' => 'Plone.gitignore',
-    'prestashtop' => 'Prestashop.gitignore',
-    'processing' => 'Processing.gitignore',
-    'python' => 'Python.gitignore',
-    'qooxdoo' => 'Qooxdoo.gitignore',
-    'qt' => 'Qt.gitignore',
-    'r' => 'R.gitignore',
-    'ros' => 'ROS.gitignore',
-    'rails' => 'Rails.gitignore',
-    'rhodesrhomobile' => 'RhodesRhomobile.gitignore',
-    'ruby' => 'Ruby.gitignore',
-    'scons' => 'SCons.gitignore',
-    'sass' => 'Sass.gitignore',
-    'scala' => 'Scala.gitignore',
-    'scrivener' => 'Scrivener.gitignore',
-    'sdcc' => 'Sdcc.gitignore',
-    'seamgen' => 'SeamGen.gitignore',
-    'sketchup' => 'SketchUp.gitignore',
-    'sugarcrm' => 'SugarCRM.gitignore',
-    'symfony' => 'Symfony.gitignore',
-    'symfonytwo' => 'Symfony2.gitignore',
-    'symphonycms' => 'SymphonyCMS.gitignore',
-    'target' => 'Target3001.gitignore',
-    'tasm' => 'Tasm.gitignore',
-    'tex' => 'TeX.gitignore',
-    'textpattern' => 'Textpattern.gitignore',
-    'turbogears' => 'TurboGears2.gitignore',
-    'typo' => 'Typo3.gitignore',
-    'umbraco' => 'Umbraco.gitignore',
-    'unity' => 'Unity.gitignore',
-    'vvvv' => 'VVVV.gitignore',
-    'visualstudio' => 'VisualStudio.gitignore',
-    'waf' => 'Waf.gitignore',
-    'wordpress' => 'WordPress.gitignore',
-    'yeoman' => 'Yeoman.gitignore',
-    'yii' => 'Yii.gitignore',
-    'zendframework' => 'ZendFramework.gitignore',
-    'gcov' => 'gcov.gitignore',
-    'nanoc' => 'nanoc.gitignore',
-    'stella' => 'stella.gitignore'
-  }
+  def self.types
+    unless defined?(@@types) && !@@types.empty?
+      @@types = []
 
-  def self.list_types
-    lines = []
-    col1size = 0
-    TYPES.each do |type, path|
-      col1size = type.length if type.length > col1size
-      lines << [type, "https://github.com/github/gitignore/blob/master/#{path}"]
+      paths = Dir["#{DATA_PATH}/**/*.gitignore"].map { |f| f.sub("#{DATA_PATH}/", '') }
+      paths.each do |path|
+        type = parameterize(File.basename(path).sub('.gitignore', ''))
+        tags = []
+        tags = path.sub("/#{File.basename(path)}", '').split('/').map { |tag| parameterize(tag) } if path =~ /\//
+
+        @@types << {
+          :path => path,
+          :name => type,
+          :tags => tags
+        }
+      end
     end
+    @@types
+  end
 
-    puts 'Available types:'
-    puts
-    lines.sort_by { |line| line[0] }.each do |line|
-      printf("%-#{col1size}s\t%s\n", line[0], line[1])
+  def self.list_types(tags = [])
+    types = self.types.select { |type| tags.empty? || (tags - type[:tags]).empty? }
+
+    if types.empty?
+      puts 'No types found!'
+    else
+      lines = []
+      col1size = 0
+      types.each do |type|
+        col1size = type[:name].length if type[:name].length > col1size
+        lines << [type[:name], "https://github.com/github/gitignore/blob/master/#{type[:path]}"]
+      end
+
+      puts 'Available types:'
+      puts
+      lines.sort_by { |line| line[0] }.each do |line|
+        printf("%-#{col1size}s\t%s\n", line[0], line[1])
+      end
     end
   end
 end
