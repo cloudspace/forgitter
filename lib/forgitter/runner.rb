@@ -1,25 +1,25 @@
 require 'forgitter'
-require 'octokit'
 
 module Forgitter
   class Runner
     def initialize(options = Forgitter::DEFAULT_OPTIONS)
       @types = convert_to_filenames(options[:types])
       @stdout = options[:stdout]
-
-      @client = Octokit
-      @client = Octokit::Client.new(:access_token => options[:access_token]) unless options[:access_token].empty?
     end
 
     def run
-      output = ""
+      failcnt = 0
+      output = ''
       @types.each do |type|
         ignore_file = get_ignore_file(type)
         if ignore_file
           output += "# Information from #{type}\n"
           output += ignore_file
+        else
+          failcnt += 1
         end
       end
+      exit(1) if failcnt == @types.length
 
       if @stdout
         puts output
@@ -34,12 +34,12 @@ module Forgitter
 
     # Given a filename on the gitignore repo, return a string with the contents of the file
     def get_ignore_file(filename)
-      puts "Fetching #{filename}"
+      STDERR.puts "Using #{filename}"
       begin
-        api_response = @client.contents('github/gitignore', :ref => 'master', :path => filename)
-        Base64.decode64( api_response.content )
-      rescue Octokit::TooManyRequests
-        puts "You are being rate limited! Failed to fetch #{filename}."
+        IO.read(File.join(DATA_PATH, filename))
+      rescue Errno::ENOENT
+        STDERR.puts "#{filename} does not exist!"
+        false
       end
     end
 

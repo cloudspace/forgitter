@@ -1,8 +1,8 @@
 # Forgitter
 
-Forgitter is a .gitignore generator. It uses the *.gitignore files found at
+Forgitter is a .gitignore generator. It uses the \*.gitignore files found at
 https://github.com/github/gitignore to generate a combined .gitignore file
-locally.
+locally. The \*.gitignore files are distributed with this gem for convenience.
 
 ## Installation
 
@@ -24,13 +24,20 @@ To generate a .gitignore in the current directory, run:
 
     forgitter TYPE1 [TYPE2 ...]
 
-Where TYPE1, TYPE2, etc. are the keys found in the
-[types](https://github.com/cloudspace/forgitter/blob/master/lib/forgitter/types.rb)
-hash.
+Where TYPE1, TYPE2, etc. are the types of files to ignore. You can see a
+complete list of available types by running:
 
-See `forgitter -h` for more options.
+    forgitter -l
+
+See `forgitter -h` for additional options.
 
 ## Contributing
+
+This gem depends on the https://github.com/github/gitignore repository as a
+submodule. After cloning this repository, run the following to retrieve the
+\*.gitignore files which will be cloned into `data/`:
+
+    git submodule init && git submodule update
 
 1. Fork it ( http://github.com/cloudspace/forgitter/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)

@@ -29,11 +29,6 @@ module Forgitter
             options[:stdout] = true
           end
 
-          opts.on('-t', '--token TOKEN',
-                  'Provide a GitHub access token for a higher rate limit (see https://developer.github.com/v3/#rate-limiting).') do |token|
-            options[:access_token] = token
-          end
-
           opts.separator ''
           opts.separator 'Common options:'
 
