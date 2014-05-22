@@ -18,6 +18,12 @@ module Forgitter
           opts.separator ''
           opts.separator 'Specific options:'
 
+          opts.on('-l', '--list',
+                  'List the available types.') do
+            Forgitter.list_types
+            exit
+          end
+
           opts.on('-c', '--stdout',
                   'Write the combined .gitignore to the standard output stream and not to disk.') do
             options[:stdout] = true

@@ -148,4 +148,19 @@ module Forgitter
     'nanoc' => 'nanoc.gitignore',
     'stella' => 'stella.gitignore'
   }
+
+  def self.list_types
+    lines = []
+    col1size = 0
+    TYPES.each do |type, path|
+      col1size = type.length if type.length > col1size
+      lines << [type, "https://github.com/github/gitignore/blob/master/#{path}"]
+    end
+
+    puts 'Available types:'
+    puts
+    lines.sort_by { |line| line[0] }.each do |line|
+      printf("%-#{col1size}s\t%s\n", line[0], line[1])
+    end
+  end
 end
