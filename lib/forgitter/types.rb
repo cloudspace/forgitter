@@ -1,9 +1,10 @@
+require 'debugger'
 module Forgitter
   def self.parameterize(name)
     name.gsub(/[^a-z0-9+]+/i, '').downcase
   end
 
-  def self.types
+  def self.types(filter_tags = [])
     unless defined?(@@types) && !@@types.empty?
       @@types = []
 
@@ -20,12 +21,11 @@ module Forgitter
         }
       end
     end
-    @@types
+    @@types.select { |type| filter_tags.empty? || (filter_tags - type[:tags]).empty? }
   end
 
   def self.list_types(tags = [])
-    types = self.types.select { |type| tags.empty? || (tags - type[:tags]).empty? }
-
+    types = self.types(tags)
     if types.empty?
       puts 'No types found!'
     else
@@ -33,7 +33,7 @@ module Forgitter
       col1size = 0
       types.each do |type|
         col1size = type[:name].length if type[:name].length > col1size
-        lines << [type[:name], "https://github.com/github/gitignore/blob/master/#{type[:path]}"]
+        lines << [type[:name], type[:path]]
       end
 
       puts 'Available types:'
