@@ -13,7 +13,7 @@ module Forgitter
         @options = Forgitter::DEFAULT_OPTIONS
 
         @opt_parser = ::OptionParser.new do |opts|
-          opts.banner = 'Usage: forgitter TYPE1 [TYPE2 ...]'
+          opts.banner = 'Usage: forgitter TAG1 [TAG2 ...]'
 
           opts.separator ''
           opts.separator 'Specific options:'
@@ -21,7 +21,7 @@ module Forgitter
           opts.on('-l', '--list [TAGS]',
                   'List the available types.',
                   '    You may optionally provide a comma-separated list of tags to search for.') do |tags|
-            tags =  tags.nil? ? [] : tags.split(',')
+            tags = tags.nil? ? [] : tags.split(',')
             Forgitter.list_types(tags)
             exit
           end

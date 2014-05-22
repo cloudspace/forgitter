@@ -2,7 +2,7 @@ require 'forgitter/types'
 
 module Forgitter
   DEFAULT_OPTIONS = {
-    :types => [],
+    :tags => [],
     :stdout => false
   }
 end

@@ -3,7 +3,7 @@ require 'forgitter'
 module Forgitter
   class Runner
     def initialize(options = Forgitter::DEFAULT_OPTIONS)
-      @types = convert_to_filenames(options[:types])
+      @types = Forgitter.filter_types(options[:tags])
       @stdout = options[:stdout]
     end
 
@@ -11,7 +11,7 @@ module Forgitter
       failcnt = 0
       output = ''
       @types.each do |type|
-        ignore_file = get_ignore_file(type)
+        ignore_file = get_ignore_file(type[:path])
         if ignore_file
           output += "# Information from #{type}\n"
           output += ignore_file
@@ -41,17 +41,6 @@ module Forgitter
         STDERR.puts "#{filename} does not exist!"
         false
       end
-    end
-
-    # converts "rails" or "Rails" into "Rails.gitignore"
-    def convert_to_filenames(names)
-      names.map do |name|
-        conversion_table[name.downcase.gsub(/[^+a-z]/i, '')]
-      end.compact
-    end
-
-    def conversion_table
-      Forgitter::TYPES
     end
   end
 end

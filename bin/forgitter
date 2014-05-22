@@ -6,9 +6,9 @@ require 'forgitter/cli'
 option_parser = Forgitter::CLI::OptionParser.new
 options = option_parser.parse(ARGV)
 
-options[:types] = []
-options[:types] << ARGV.pop until ARGV.empty?
-if options[:types].empty?
+options[:tags] = []
+options[:tags] << ARGV.pop until ARGV.empty?
+if options[:tags].empty?
   puts option_parser.help
   exit(1)
 end
