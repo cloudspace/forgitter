@@ -24,8 +24,8 @@ module Forgitter
     @@types.select { |type| filter_tags.empty? || (filter_tags - type[:tags]).empty? }
   end
 
-  def self.list_types(tags = [])
-    types = self.types(tags)
+  def self.list_types(filter_tags = [])
+    types = self.types(filter_tags)
     if types.empty?
       puts 'No types found!'
     else
