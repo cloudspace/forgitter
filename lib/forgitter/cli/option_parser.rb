@@ -19,8 +19,7 @@ module Forgitter
           opts.separator 'Specific options:'
 
           opts.on('-l', '--list [TAGS]',
-                  'List the available types.',
-                  '    You may optionally provide a comma-separated list of tags to search for.') do |tags|
+                  'List the available types. You may optionally provide a comma-separated list of tags to search for.') do |tags|
             tags = tags.nil? ? [] : tags.split(',')
             Forgitter.list_types(tags)
             exit
