@@ -3,7 +3,7 @@ require 'forgitter'
 module Forgitter
   class Runner
     def initialize(options = Forgitter::DEFAULT_OPTIONS)
-      @types = Forgitter.filter_types(options[:tags])
+      @types = Forgitter.filter_types(options)
       @stdout = options[:stdout]
     end
 

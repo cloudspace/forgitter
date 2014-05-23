@@ -39,6 +39,9 @@ submodule. After cloning this repository, run the following to retrieve the
 
     git submodule init && git submodule update
 
+\*.gitignore files placed directly under `data/` will be ignored due to tag
+ambiguity.
+
 1. Fork it ( http://github.com/cloudspace/forgitter/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)

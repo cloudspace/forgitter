@@ -8,10 +8,11 @@ options = option_parser.parse(ARGV)
 
 options[:tags] = []
 options[:tags] << ARGV.pop until ARGV.empty?
-if options[:tags].empty?
+if options[:tags].empty? && !options[:list]
   puts option_parser.help
   exit(1)
 end
+options[:tags].reverse!
 
 if options[:list]
   Forgitter.list_types(options[:tags])
