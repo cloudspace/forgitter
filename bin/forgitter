@@ -13,5 +13,10 @@ if options[:tags].empty?
   exit(1)
 end
 
+if options[:list]
+  Forgitter.list_types(options[:tags])
+  exit
+end
+
 runner = Forgitter::Runner.new(options)
 runner.run
