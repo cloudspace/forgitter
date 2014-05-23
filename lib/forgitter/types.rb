@@ -1,4 +1,3 @@
-require 'debugger'
 module Forgitter
   ##
   # Strip unnecessary characters and downcase the given string.
