@@ -10,31 +10,31 @@ module Forgitter
   end
 
   ##
-  # Filter types by tags, then by name.
+  # Filter ignorefiles by tags.
   #
-  # If tags is empty, this will return all types.
+  # If tags is empty, this will return all ignorefiles.
   #
   # @param [Hash] the hash of options containing tag strings
-  # @return [Array] the array of filtered types
+  # @return [Array] the array of filtered ignorefiles
   #
-  def self.filter_types(options = {})
-    return types if options[:tags].empty?
+  def self.filter(options = {})
+    return ignorefiles if options[:tags].empty?
 
-    types.select do |type|
+    ignorefiles.select do |ignorefile|
       selected = true
       options[:tags].uniq.each do |tag|
-        selected &&= type[:tags].count(tag) >= options[:tags].count(tag)
+        selected &&= ignorefile[:tags].count(tag) >= options[:tags].count(tag)
       end
       selected
     end
   end
 
   ##
-  # Fetch all available type paths, relative to the DATA_PATH.
+  # Fetch all available ignorefile paths, relative to the DATA_PATH.
   #
   # .gitignore files placed directly under DATA_PATH are ignored.
   #
-  # @return [Array] the array of available type paths
+  # @return [Array] the array of available ignorefile paths
   #
   def self.paths
     @@paths ||= Dir["#{DATA_PATH}/**/*.gitignore"].map do |path|
@@ -45,19 +45,19 @@ module Forgitter
   end
 
   ##
-  # Pull a parameterized type out of the given path.
+  # Pull a parameterized ignorefile out of the given path.
   #
   # @param [String] the path to a .gitignore file
-  # @return [String] the type
+  # @return [String] the ignorefile
   #
-  def self.type(path)
+  def self.ignorefile(path)
     parameterize(File.basename(path).sub('.gitignore', ''))
   end
 
   ##
   # Pull parameterized tags out of the given path.
   #
-  # If path does not contain a /, this just returns the type name in an array.
+  # If path does not contain a /, this just returns the ignorefile name in an array.
   #
   # @param [String] the path to a .gitignore file
   # @return [Array] the tags
@@ -70,42 +70,48 @@ module Forgitter
         parameterize(tag)
       end
     end
-    tags << type(path)
+    tags << ignorefile(path)
     tags
   end
 
   ##
-  # Fetch all available types.
+  # Fetch all available ignorefiles.
   #
-  # @return [Array] the array of available types
+  # @return [Array] the array of available ignorefiles
   #
-  def self.types
-    unless defined?(@@types) && !@@types.empty?
-      @@types = []
+  def self.ignorefiles
+    unless defined?(@@ignorefiles) && !@@ignorefiles.empty?
+      @@ignorefiles = []
 
       paths.each do |path|
-        @@types << {
+        @@ignorefiles << {
           :path => path,
-          :name => type(path),
+          :name => ignorefile(path),
           :tags => tags(path)
         }
       end
     end
-    @@types
+    @@ignorefiles
   end
 
-  def self.list_types(tags = [])
-    types = filter_types({ :tags => tags })
-    if types.empty?
-      puts 'No types found!'
+  ##
+  # Output a list of ignorefile tags along with the relative path to the gitignore,
+  # formatted into columns.
+  #
+  # @param [Array] tags The list of tags to filter.
+  #
+  def self.list(tags = [])
+    ignorefiles = filter({ :tags => tags })
+    if ignorefiles.empty?
+      puts 'No ignorefiles found!'
     else
       lines = []
       col1size = 0
 
-      types.each do |type|
-        id = type[:tags].join(' ')
+      ignorefiles.each do |ignorefile|
+        id = ignorefile[:tags].join(' ')
         col1size = id.length if id.length > col1size
-        lines << [id, type[:path]]
+        lines << [id, ignorefile[:path]]
       end
 
       lines.sort_by { |line| line[0] }.each do |line|

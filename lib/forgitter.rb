@@ -1,5 +1,5 @@
 require 'forgitter/options'
-require 'forgitter/types'
+require 'forgitter/ignorefiles'
 require 'forgitter/runner'
 require 'forgitter/version'
 

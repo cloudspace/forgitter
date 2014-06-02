@@ -22,10 +22,10 @@ Or install it yourself as:
 
 To generate a .gitignore in the current directory, run:
 
-    forgitter TYPE1 [TYPE2 ...]
+    forgitter TAG1 [TAG2 ...]
 
-Where TYPE1, TYPE2, etc. are the types of files to ignore. You can see a
-complete list of available types by running:
+Where TAG1, TAG2, etc. are tags that correspond to .gitignore files. You can
+see a complete list of tags by running:
 
     forgitter -l
 

@@ -14,7 +14,7 @@ end
 options[:tags].reverse!
 
 if options[:list]
-  Forgitter.list_types(options[:tags])
+  Forgitter.list(options[:tags])
   exit
 end
 

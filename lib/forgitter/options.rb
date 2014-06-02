@@ -1,4 +1,4 @@
-require 'forgitter/types'
+require 'forgitter/ignorefiles'
 
 module Forgitter
   DEFAULT_OPTIONS = {

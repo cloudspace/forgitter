@@ -3,23 +3,23 @@ require 'forgitter'
 module Forgitter
   class Runner
     def initialize(options = Forgitter::DEFAULT_OPTIONS)
-      @types = Forgitter.filter_types(options)
+      @ignorefiles = Forgitter.filter(options)
       @stdout = options[:stdout]
     end
 
     def run
       failcnt = 0
       output = ''
-      @types.each do |type|
-        ignore_file = get_ignore_file(type[:path])
+      @ignorefiles.each do |ignorefile|
+        ignore_file = get_ignore_file(ignorefile[:path])
         if ignore_file
-          output += "# Information from #{type}\n"
+          output += "# Information from #{ignorefile}\n"
           output += ignore_file
         else
           failcnt += 1
         end
       end
-      exit(1) if failcnt == @types.length
+      exit(1) if failcnt == @ignorefiles.length
 
       if @stdout
         puts output

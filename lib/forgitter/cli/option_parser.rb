@@ -19,7 +19,7 @@ module Forgitter
           opts.separator 'Specific options:'
 
           opts.on('-l', '--list',
-                  'Instead of generating a .gitignore, list the types that match the tags.') do
+                  'Instead of generating a .gitignore, list the ignorefiles that match the tags.') do
             options[:list] = true
           end
 
@@ -51,7 +51,7 @@ module Forgitter
         opt_parser.help
       end
 
-      #
+      ##
       # Return a structure describing the options.
       #
       def parse(args)
