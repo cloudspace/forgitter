@@ -13,23 +13,12 @@ module Forgitter
         @options = Forgitter::DEFAULT_OPTIONS
 
         @opt_parser = ::OptionParser.new do |opts|
-          opts.banner = 'Usage: forgitter TAG1 [TAG2 ...]'
-
-          opts.separator ''
-          opts.separator 'Specific options:'
+          opts.banner = 'Usage: forgitter [-l] TAG1 [TAG2 ...]'
 
           opts.on('-l', '--list',
                   'Instead of generating a .gitignore, list the ignorefiles that match the tags.') do
             options[:list] = true
           end
-
-          opts.on('-c', '--stdout',
-                  'Write the combined .gitignore to the standard output stream and not to disk.') do
-            options[:stdout] = true
-          end
-
-          opts.separator ''
-          opts.separator 'Common options:'
 
           # No argument, shows at tail.  This will print an options summary.
           # Try it and see!

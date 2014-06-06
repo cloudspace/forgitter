@@ -1,8 +1,7 @@
 # Forgitter
 
-Forgitter is a .gitignore generator. It uses the \*.gitignore files found at
-https://github.com/github/gitignore to generate a combined .gitignore file
-locally. The \*.gitignore files are distributed with this gem for convenience.
+Forgitter is a .gitignore generator. It is based on the ignorefiles found at
+https://github.com/github/gitignore.
 
 ## Installation
 
@@ -20,16 +19,40 @@ Or install it yourself as:
 
 ## Usage
 
-To generate a .gitignore in the current directory, run:
+To generate a .gitignore, run:
 
     forgitter TAG1 [TAG2 ...]
 
-Where TAG1, TAG2, etc. are tags that correspond to .gitignore files. You can
-see a complete list of tags by running:
+Where TAG1, TAG2, etc. are tags that correspond to .gitignore files, e.g.,
 
-    forgitter -l
+>     $ forgitter vim
+>     # github/Global/vim.gitignore
+>     [._]*.s[a-w][a-z]
+>     [._]s[a-w][a-z]
+>     *.un~
+>     Session.vim
+>     .netrwhist
+>     *~
 
-See `forgitter -h` for additional options.
+By default, this will output to the standard output stream. You can redirect
+this to a file using one of the following:
+
+    forgitter TAG1 [TAG2 ...] > .gitignore  # overwrite
+    forgitter TAG1 [TAG2 ...] >> .gitignore # append
+
+To see a list of ignorefiles that match specific tags, run:
+
+    forgitter -l TAG1 [TAG2 ...]
+
+>     $ forgitter -l rails
+>     cloudspace rails chefcookbook	cloudspace/rails/ChefCookbook.gitignore
+>     cloudspace rails linux       	cloudspace/rails/Linux.gitignore
+>     cloudspace rails rails       	cloudspace/rails/Rails.gitignore
+>     cloudspace rails ruby        	cloudspace/rails/Ruby.gitignore
+>     github rails                 	github/Rails.gitignore
+
+Running `forgitter -l` without arguments will list all available
+ignorefiles.
 
 ## Contributing
 

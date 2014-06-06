@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Adam Dunson', 'Jeremiah Hemphill']
   spec.email         = ['adam@cloudspace.com', 'jeremiah@cloudspace.com']
   spec.summary       = %q{Forgitter is a .gitignore generator.}
-  spec.description   = %q{Forgitter is a .gitignore generator. It uses the *.gitignore files found at https://github.com/github/gitignore to generate a combined .gitignore file locally.}
+  spec.description   = %q{Forgitter is a .gitignore generator. It is based on the ignorefiles found at https://github.com/github/gitignore.}
   spec.homepage      = ''
   spec.license       = 'MIT'
 
